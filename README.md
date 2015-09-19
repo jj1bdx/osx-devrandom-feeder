@@ -17,7 +17,7 @@ the security of the entire OS X operating system.*
 
 ## Tested environment
 
-* OS X 10.10.4
+* OS X 10.10.5
 
 ## How this works
 
@@ -37,16 +37,10 @@ Rikitake develops the software and hardware):
 
 ## Version
 
-* 12-AUG-2015: 0.1.0 (initial release, based on FreeBSD /dev/trng 0.2.1)
+* 19-AUG-2015: 0.1.1 (Fix bug on tty read(2) of feedrandom)
+* 12-AUG-2015: 0.1.0 (Initial release, based on FreeBSD /dev/trng 0.2.1)
 
-## How to compile and load /dev/trng
-
-    make clean all
-    # run following as a superuser
-    # /dev/trng has the owner uucp:dialer and permission 0660 as default
-    kldload ./trng.ko
-
-## How to run feedtrng
+## How to run feedrandom
 
     # Only /dev/cu.* devices are accepted
     feedrandom -d /dev/cu.usbmodem-device
