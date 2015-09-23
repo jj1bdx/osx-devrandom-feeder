@@ -25,7 +25,7 @@ the security of the entire OS X operating system.*
 `/dev/random`. The code sets input tty disciplines and lock the tty, then feed
 the contents to `/dev/random`.
 
-The source to write to `/dev/trng` *must* be a real TRNG. Possible candidates are:
+The source to write to `/dev/random` *must* be a real TRNG. Possible candidates are:
 
 * [NeuG](http://www.gniibe.org/memo/development/gnuk/rng/neug.html), claiming ~80kbytes/sec generation speed
 * [TrueRNG 2](https://www.tindie.com/products/ubldit/truerng-hardware-random-number-generator/), claiming ~43.5kbytes/sec generation speed
@@ -37,6 +37,7 @@ Rikitake develops the software and hardware):
 
 ## Version
 
+* 23-SEP-2015: 0.1.2 (Fix termios; now CLOCAL cleared, modem control enabled)
 * 19-AUG-2015: 0.1.1 (Fix bug on tty read(2) of feedrandom)
 * 12-AUG-2015: 0.1.0 (Initial release, based on FreeBSD /dev/trng 0.2.1)
 
@@ -60,7 +61,7 @@ Rikitake develops the software and hardware):
     lflags: -icanon -isig -iexten -echo
     iflags: -icrnl -ixon -ixany -imaxbel ignbrk -brkint
     oflags: -opost -onlcr -oxtabs
-    cflags: cs8 -parenb clocal crtscts
+    cflags: cs8 -parenb -clocal crtscts
 
 ## License
 
