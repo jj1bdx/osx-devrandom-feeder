@@ -46,15 +46,6 @@
 
 #define OUTPUTFILE "/dev/random"
 
-void usage(void) {
-    errx(EX_USAGE,
-        "Usage: %s [-d cu.-device] [-s speed] [-o] [-h]\n"
-        "Only cu.[.+] and /dev/cu.[.+] are accepted\n"
-        "Speed range: 9600 to 1000000 [bps] (default: 115200)\n"
-        "Default output device: %s (use -o to output to stdout)\n"
-        "Use -h for help", getprogname(), OUTPUTFILE);
-}
-
 /* 
  * buffer size
  * for fetching from the TRNG tty device
@@ -63,6 +54,16 @@ void usage(void) {
  */
 
 #define BUFFERSIZE (512)
+
+void usage(void) {
+    errx(EX_USAGE,
+        "Usage: %s [-d cua-device] [-s speed] [-o] [-h]\n"
+        "Only cua[.+] and /dev/cua[.+] are accepted\n"
+        "Speed range: 9600 to 1000000 [bps] (default: 115200)\n"
+        "Default output device: %s (use -o to output to stdout)\n"
+        "Note: the first %d bytes are discarded when without -o\n"
+        "Use -h for help", getprogname(), OUTPUTFILE, BUFFERSIZE);
+}
 
 int main(int argc, char *argv[]) {
 
@@ -78,6 +79,8 @@ int main(int argc, char *argv[]) {
     char devname[MAXPATHLEN];
     long speedval = 115200L;
     int oflag = 0;
+    /* discard the first output buffer block as default */
+    int discard = 1;
 
     if (argc < 2) {
         usage();
@@ -108,6 +111,8 @@ int main(int argc, char *argv[]) {
             break;
         case 'o':
             oflag = 1;
+            /* do NOT discard the output buffer block */
+            discard = 0;
             break;
         case 'h':
             usage();
@@ -203,9 +208,14 @@ int main(int argc, char *argv[]) {
             /* add the number of bytes read */
             i += rsize;
         }
-        if ((wsize = write(randomfd, rbuf,
-                       (size_t)BUFFERSIZE)) == -1) {
-            err(EX_IOERR, "/dev/random write failed");
+        if (discard == 0) {
+            if ((wsize = write(randomfd, rbuf,
+                         (size_t)BUFFERSIZE)) == -1) {
+                err(EX_IOERR, "/dev/random write failed");
+            }
+        } else {
+            /* clear discarding flag */
+            discard = 0;
         }
     }
     /* notreached */
