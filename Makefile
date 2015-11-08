@@ -1,6 +1,6 @@
 PROG=	feedrandom
-SRCS=	feedrandom.c
-OBJS=	feedrandom.o
+SRCS=	feedrandom.c sha512.c sha512-api.c
+OBJS=	feedrandom.o sha512.o sha512-api.o
 
 CC=		cc
 CFLAGS+= -O2 -pipe -std=c99 -pedantic -Wall
