@@ -17,7 +17,7 @@ the security of the entire OS X operating system.*
 
 ## Tested environment
 
-* OS X 10.10.5
+* OS X 10.11.1
 
 ## How this works
 
@@ -37,6 +37,7 @@ Rikitake develops the software and hardware):
 
 ## Version
 
+* 8-NOV-2015: 0.2.0 (Use SHA512 hash for 1:8 compression as default)
 * 23-SEP-2015: 0.1.2 (Fix termios; now CLOCAL cleared, modem control enabled)
 * 19-AUG-2015: 0.1.1 (Fix bug on tty read(2) of feedrandom)
 * 12-AUG-2015: 0.1.0 (Initial release, based on FreeBSD /dev/trng 0.2.1)
@@ -66,3 +67,8 @@ Rikitake develops the software and hardware):
 ## License
 
 BSD 2-clause. See LICENSE.
+
+SHA512 hashing code are from the following page: [Fast SHA-2 hashes in x86
+assembly](http://www.nayuki.io/page/fast-sha2-hashes-in-x86-assembly) by
+Project Nayuki. The related code are distributed under the MIT License.
+
