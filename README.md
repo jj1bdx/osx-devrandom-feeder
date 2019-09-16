@@ -37,6 +37,7 @@ Rikitake develops the software and hardware):
 
 ## Version
 
+* 16-SEP-2019: 0.2.1 (Bugfix and source code reformatting)
 * 8-NOV-2015: 0.2.0 (Use SHA512 hash for 1:8 compression as default)
 * 23-SEP-2015: 0.1.2 (Fix termios; now CLOCAL cleared, modem control enabled)
 * 19-AUG-2015: 0.1.1 (Fix bug on tty read(2) of feedrandom)
