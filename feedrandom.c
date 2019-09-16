@@ -92,6 +92,7 @@ int main(int argc, char *argv[]) {
     uint8_t hashbuf[BUFFERSIZE + (sizeof(uint64_t) * 4)];
     uint64_t hash[8];
 
+    inputbase = "";
     if (argc < 2) {
         usage();
     }
