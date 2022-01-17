@@ -2,12 +2,12 @@
 
 ## WARNING
 
-This software is still at the *experimental stage*. No guarantee for any damage
-which might be caused by the use of this software. Caveat emptor.
+This software is still at the *experimental stage*. There is no guarantee for any damage
+caused by the use of this software. Caveat emptor.
 
 ## What this driver is for
 
-To accomodate True Random Number Generator (TRNG) random bits into OS X kernel.
+To accommodate True Random Number Generator (TRNG) random bits into OS X kernel.
 
 ## IMPORTANT SECURITY NOTICE
 
@@ -17,12 +17,13 @@ the security of the entire OS X operating system.*
 
 ## Tested environment
 
-* OS X 10.11.1
+* macOS 12.1
+* This code was formerly tested with OS X 10.11.1
 
 ## How this works
 
 `feedrandom.c` is a C code example to transfer TRNG data from a tty device to
-`/dev/random`. The code sets input tty disciplines and lock the tty, then feed
+`/dev/random`. The code sets input tty disciplines and locks the tty, then feeds
 the contents to `/dev/random`.
 
 The source to write to `/dev/random` *must* be a real TRNG. Possible candidates are:
@@ -30,13 +31,14 @@ The source to write to `/dev/random` *must* be a real TRNG. Possible candidates 
 * [NeuG](http://www.gniibe.org/memo/development/gnuk/rng/neug.html), claiming ~80kbytes/sec generation speed
 * [TrueRNG 2](https://www.tindie.com/products/ubldit/truerng-hardware-random-number-generator/), claiming ~43.5kbytes/sec generation speed
 
-The following TRNG is slow (~2kbytes/sec), but may work well (disclaimer: Kenji
+The following TRNG is slow (~2kbytes/sec) but may work well (disclaimer: Kenji
 Rikitake develops the software and hardware):
 
 * [avrhwrng](https://github.com/jj1bdx/avrhwrng/), an experimental hardware on Arduino Duemilanove/UNO
 
 ## Version
 
+* 17-JAN-2021: 0.2.2 (Documentation fix)
 * 16-SEP-2019: 0.2.1 (Bugfix and source code reformatting)
 * 8-NOV-2015: 0.2.0 (Use SHA512 hash for 1:8 compression as default)
 * 23-SEP-2015: 0.1.2 (Fix termios; now CLOCAL cleared, modem control enabled)
@@ -69,7 +71,7 @@ Rikitake develops the software and hardware):
 
 BSD 2-clause. See LICENSE.
 
-SHA512 hashing code are from the following page: [Fast SHA-2 hashes in x86
+SHA512 hashing code is from the following page: [Fast SHA-2 hashes in x86
 assembly](http://www.nayuki.io/page/fast-sha2-hashes-in-x86-assembly) by
-Project Nayuki. The related code are distributed under the MIT License.
+Project Nayuki. The related code is distributed under the MIT License.
 
